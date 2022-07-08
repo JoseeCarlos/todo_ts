@@ -26,18 +26,19 @@ export const Calculator = () => {
         setResult(0);
         setNum1(0);
         setNum2(0);
+        
     }
     
     return (
         <div>
             <h1>Calculator</h1>
-            <input type="number" value={num1} onChange={(e) => setNum1(Number(e.target.value))} />
-            <input type="number" value={num2} onChange={(e) => setNum2(Number(e.target.value))} />
+            <input type="number" onChange={(e) => setNum1(Number(e.target.value))} />
+            <input type="number" onChange={(e) => setNum2(Number(e.target.value))} />
             <button onClick={add}>+</button>
             <button onClick={subtract}>-</button>
             <button onClick={multiply}>*</button>
             <button onClick={divide}>/</button>
-            <button onClick={clear}>Clear</button>
+            <button onClick={clear }>Clear</button>
             <h1>{result}</h1>
         </div>
     );
