@@ -35,7 +35,6 @@ type TaskProps = {
     onClickTaskCompleted(value: boolean): void,
     onClickStepCompleted(value:boolean): void,
 }
-
 export const Task: FC<TaskProps> = ({task, onClickTaskCompleted, onClickStepCompleted}) => {
     const [showDetails, setShowDetails] = useState<boolean>(false)
 

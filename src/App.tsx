@@ -6,6 +6,7 @@ import ClassComponente from './components/testComponents/ClassComponent';
 import {FunctionComponent} from './components/testComponents/FunctionComponent';
 import { Card } from './components/testComponents/Card';
 import { Todo } from './module/Todo/Todo';
+import { Counter } from './components/testComponents/TestReducer';
 
 function App() {
   //hocks
@@ -41,7 +42,15 @@ function App() {
     //   <Todo></Todo>
     //   <ul></ul>
     // </div>
-    <Todo></Todo>
+    // <div>
+    //   <Todo></Todo>
+    //   <FunctionComponent message="hello world" onChange={onChangeFuction}/>
+    // </div>
+    <div className='App'>
+      <Todo></Todo>
+      {/* <Counter></Counter> */}
+    </div>
+    
   );
 } // end App
 
