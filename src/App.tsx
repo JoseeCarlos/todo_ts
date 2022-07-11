@@ -7,6 +7,7 @@ import {FunctionComponent} from './components/testComponents/FunctionComponent';
 import { Card } from './components/testComponents/Card';
 import { Todo } from './module/Todo/Todo';
 import { Counter } from './components/testComponents/TestReducer';
+import { NewTask } from './module/Todo/components/NewTask';
 
 function App() {
   //hocks
@@ -48,6 +49,7 @@ function App() {
     // </div>
     <div className='App'>
       <Todo></Todo>
+      <NewTask></NewTask>
       {/* <Counter></Counter> */}
     </div>
     

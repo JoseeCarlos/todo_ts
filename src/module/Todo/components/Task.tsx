@@ -35,6 +35,32 @@ type TaskProps = {
     onClickTaskCompleted(value: boolean): void,
     onClickStepCompleted(value:boolean): void,
 }
+
+const completedTask = (id: any, completed: any) => {
+    var data = JSON.parse(localStorage.getItem("todo") || "[]");
+    data.forEach((task: any) => {
+        if (task.id === id) {
+            if (completed) {
+                task.completed = true;
+            }else
+            {
+                task.completed = false;
+            }
+        }else
+          throw new Error("Tarea no seleccionada");
+    }
+    )
+    localStorage.setItem("todo", JSON.stringify(data));
+    window.location.reload();
+}
+
+const deleteTask = (id: any) => {
+    var data = JSON.parse(localStorage.getItem("todo") || "[]");
+    data = data.filter((item: { id: any }) => item.id !== id);
+    localStorage.setItem("todo", JSON.stringify(data));
+    window.location.reload();
+}
+
 export const Task: FC<TaskProps> = ({task, onClickTaskCompleted, onClickStepCompleted}) => {
     const [showDetails, setShowDetails] = useState<boolean>(false)
 
@@ -57,6 +83,8 @@ export const Task: FC<TaskProps> = ({task, onClickTaskCompleted, onClickStepComp
                     <div>
                         <Text bold my={1}>Descripcion</Text>
                         <Text>{task.description}</Text>
+                        <br />
+                        <button onClick={()=> deleteTask(task.id)}>Eliminar Task</button>
                     </div>
                 </TaskDetail>
 

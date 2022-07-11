@@ -1,9 +1,9 @@
 export const TODO_DATA = [{
-    id: '1',
-    name: 'Tarea 1',
-    description: 'Descripción de la tarea 1',
-    completed: true,
-    steps: [{
+        id: '1',
+        name: 'Tarea 1',
+        description: 'Descripción de la tarea 1',
+        completed: true,
+        steps: [{
         id: '11',
         name: 'Step 1',
         completed: false,
