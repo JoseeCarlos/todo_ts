@@ -1,14 +1,23 @@
-import { useState } from "react"
-import { TODO_DATA } from "../../data/data"
-import { Task } from "./components/Task"
-export const Todo = () => {
-    const [todo, setTodo] = useState(TODO_DATA)
-    return ( 
-        <div>
-            Aqui debe estar el componente Task 
+import React, {useState} from "react";
+import {Container} from "../../components/layout/Container";
+import {Title} from "../../components/text";
+import { TODO_DATA } from "../../data/data";
+import { Task } from "./components/Task";
+
+
+export const Todo: React.FC = () => {
+    const [todo, setTodo] = useState(TODO_DATA);
+
+    return (
+        <Container>
+            <Title>Todo.tsx</Title>
             {todo.map((task: any)=>(
-                <Task item={task} />
+                <Task task={task} key={task.id}
+                onClickTaskCompleted={(value) => {console.log(`on task completed`, value)}}
+                onClickStepCompleted={(value) => {console.log(`on Step Completed`, value)}}
+                />
             ))}
-        </div>
-    )
+        </Container>
+
+        )
 }

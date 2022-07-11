@@ -1,22 +1,22 @@
 export const TODO_DATA = [{
-    id: 1,
+    id: '1',
     name: 'Tarea 1',
-    description: 'Tarea 1 de la lista',
-    completed: false,
+    description: 'Descripción de la tarea 1',
+    completed: true,
     steps: [{
-        id: 11,
+        id: '11',
         name: 'Step 1',
         completed: false,
 
     },
     {
-        id: 12,
+        id: '12',
         name: 'Step 2',
         completed: false,
 
     },
     {
-        id: 13,
+        id: '13',
         name: 'Step 3',
         completed: false,
 
@@ -24,24 +24,24 @@ export const TODO_DATA = [{
     
 ]},
 {
-    id: 2,
+    id: '2',
     name: 'Tarea 2',
     description: 'Tarea 2 de la lista',
     completed: false,
     steps: [{
-        id: 21,
+        id: '21',
         name: 'Step 1',
         completed: false,
 
     },
     {
-        id: 22,
+        id: '22',
         name: 'Step 2',
         completed: false,
 
     },
     {
-        id: 23,
+        id: '23',
         name: 'Step 3',
         completed: false,
 

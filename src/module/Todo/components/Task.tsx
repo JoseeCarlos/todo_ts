@@ -1,30 +1,68 @@
-import { useState } from "react"
-import "./fcStyle.css";
-import { Step } from "./Step";
-export const Task = ({item}: any) => {
-    const [showSteps, setShowSteps] = useState(false);
-    
+import { BaseSyntheticEvent, FC, useState } from "react"
+import styled from "styled-components"
+import { Text } from "../../../components/text"
+import {TaskType} from "../../../types/Task"
+import {COLOR} from "../../../utils/theme"
+import { Step } from "./Step"
+
+const TaskContainer = styled.div`
+    background-color: ${COLOR.light};
+    padding: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 1px 3px 8px rgb(0 0 0 / 30%);
+`
+
+const TaskWrapper = styled.div`
+    display: flex;
+`
+
+const TaskArrow = styled.div`
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: ${COLOR.text};
+    margin-right: 1rem;
+`
+const TaskDetail = styled.div`
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-top: 0.5rem;
+`
+
+type TaskProps = {
+    task: TaskType;
+    onClickTaskCompleted(value: boolean): void,
+    onClickStepCompleted(value:boolean): void,
+}
+
+export const Task: FC<TaskProps> = ({task, onClickTaskCompleted, onClickStepCompleted}) => {
+    const [showDetails, setShowDetails] = useState<boolean>(false)
+
     return(
-        <div style={{borderStyle: 'solid'}} className="row" >
-            <div>   
-            <div className="column">
-                <button onClick={() => setShowSteps(!showSteps)}>{showSteps ? '^' : 'v'}</button>
-            </div>
-            <div className="column">
-                <h3>{item.name}</h3>
-            </div>
-            <div className="column">
-                <input type="checkbox" onChange={() => console.log("Mensaje de consola") }/>
-            </div>
-            </div>
-            <div>
-                {showSteps && ( 
-                    <Step step={item.steps}/>
-                )}
-            </div>
-            <div>
-                <h1>{item.description}</h1>
-            </div>
-        </div>
+        <TaskContainer>
+            <TaskWrapper>
+            <TaskArrow className={`fas fa-angle-${showDetails ? 'up' : 'down'}`} 
+            onClick={()=> setShowDetails((sd: boolean) => !sd)}
+            />
+            <Text style={{flex: 1}}>{task.name}</Text>
+            <input type="checkbox"
+            checked={task.completed}
+            onChange={(e: BaseSyntheticEvent)=> onClickTaskCompleted(e.target.checked)} />
+            </TaskWrapper>
+            {showDetails && (
+                <TaskDetail>
+                    {task.steps.map((step:any) => (
+                        <Step step={step} key={step.id} onClickStepCompleted={onClickStepCompleted}/>
+                    ))}
+                    <div>
+                        <Text bold my={1}>Descripcion</Text>
+                        <Text>{task.description}</Text>
+                    </div>
+                </TaskDetail>
+
+            )}
+        </TaskContainer>
     )
 }
+
