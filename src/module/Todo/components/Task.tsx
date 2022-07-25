@@ -109,7 +109,7 @@ export const Task: FC<TaskProps> = ({ task }) =>{
         )}
         {showText && (
           <form onSubmit={handleEditName}>
-          <Input  value={newName} onChange={(value) => setNewName(value)} placeholder="Nuevo Nombre"/>
+          <Input  value={newName} onChange={(event: BaseSyntheticEvent) => setNewName(event.target.value)} placeholder="Nuevo Nombre"/>
           <Button style={{flex: 1}} type="submit" small>Cambiar Nombre</Button>
           <Button style={{flex: 1}} onClick={() =>{ setShowText(false) } } type="submit" small>Cancelar</Button>
           
@@ -135,7 +135,7 @@ export const Task: FC<TaskProps> = ({ task }) =>{
           <form onSubmit={handleAddStep}>
             <AddStepContainer>
               <div style={{flex: "1 1 0%"}}>
-                <Input value={newStep} onChange={(value) => setNewStep(value)} placeholder="Agregar nuevo paso"/>
+                <Input value={newStep} onChange={(event: BaseSyntheticEvent) => setNewStep(event.target.value)} placeholder="Agregar nuevo paso"/>
               </div>
               <Box ml={0.5}>
                 <Button type="submit" small>Agregar Paso</Button>
@@ -145,7 +145,7 @@ export const Task: FC<TaskProps> = ({ task }) =>{
           <div>
             {showDescription && (
               <form onSubmit={handleEditDescription}>
-                <Input value={newDescription} onChange={(value) => setNewDescription(value)} placeholder="Agregar descripción"/>
+                <Input value={newDescription} onChange={(event: BaseSyntheticEvent) => setNewDescription(event.target.value)} placeholder="Agregar descripción"/>
                 <Box ml={0.5}>
                   <Button type="submit" small>Agregar Descripción</Button>
                 </Box>

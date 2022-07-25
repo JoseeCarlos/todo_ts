@@ -4,6 +4,11 @@ import styled from "styled-components";
 const InputContainer: FC<any> = styled.div`
   margin-top: 0.5rem;
 `
+const ErrorElement = styled.li`
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+`
 
 const InputText = styled.input`
   box-sizing: border-box;
@@ -15,17 +20,31 @@ const InputText = styled.input`
 
 interface InputType {
   placeholder: string;
-  value: string;
-  onChange(e: string): void;
+  value?: string;
+  onChange?(e: BaseSyntheticEvent): void;
+  type?: string;
+  errors?: string[];
+  [key: string]: any;
 }
 
-export const Input: FC<InputType> = ({ placeholder, value, onChange}) => {
+export const Input: FC<InputType> = ({ placeholder, value,type, onChange, inputProps, errors}) => {
   return (<InputContainer>
     <InputText
-      type="text"
+      type={type || "text"}
       placeholder={placeholder}
       value={value}
-      onChange={(e: BaseSyntheticEvent) => {onChange(e.target.value)}}
+      onChange={onChange}
+      {...inputProps}
     />
+    {!!errors?.length && (
+      <ul>
+        {errors.map((error: any) => (
+          <ErrorElement key={`${placeholder}_${error}`} >{error}</ErrorElement>
+        ))}
+      </ul>
+    )
+
+
+    }
   </InputContainer> )
 }
