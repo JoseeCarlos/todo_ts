@@ -57,9 +57,10 @@ export const Nav = () => {
             {!activeUser && <CustomLink to="/register">Register</CustomLink>}        
             {activeUser && <CustomLink to="/todo">Todo</CustomLink>}
             {activeUser && <CustomLink to="/test">Test</CustomLink>}
-            <li>
+            {activeUser && <li>
                 <button onClick={onlogout} >Logout</button>
-            </li>
+            </li> }
+            
             
         </StyledNav>
     );

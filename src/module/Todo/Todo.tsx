@@ -48,8 +48,8 @@ export const Todo: React.FC = () => {
         <Button onClick={() => dispatch(setIsModalAddTaskOpen(true))}>Agregar Tarea</Button>
       </Box>
       <Box>
-       <h1 style={{ color:'gray' }} >Tareas Completadas: {taskCompleted}</h1>
-       <h1 style={{ color:'gray' }} >Tareas Incompletas: {taskIncompleted}</h1>
+       <h1 style={{ color:'blue' }} >Tareas Completadas: {taskCompleted}</h1>
+       <h1 style={{ color:'red' }} >Tareas Incompletas: {taskIncompleted}</h1>
       </Box>
       <Modal
         isOpen={isModalAddTaskOpen}

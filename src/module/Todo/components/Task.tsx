@@ -1,15 +1,19 @@
 import { BaseSyntheticEvent, FC, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components"
 import { Button } from "../../../components/Button"
 import { Input } from "../../../components/form/Input"
 import { Box } from "../../../components/layout/Box"
+import { Modal } from "../../../components/modal"
 import { Text } from "../../../components/text"
-import { removeTask, onCheckTask, onAddStep, editDescription, editTaskName } from "../../../redux/todo"
+import { RootState } from "../../../redux/configureStore"
+import { removeTask, onCheckTask, onAddStep, editDescription, editTaskName, setIsModalAddTaskOpen } from "../../../redux/todo"
 import { TaskType } from "../../../types/Task"
 import { uuid } from "../../../utils"
 import { COLOR } from "../../../utils/theme"
 import { Step } from "./Step"
+
+
 
 const AddStepContainer = styled.div`
   display: flex;
@@ -50,7 +54,9 @@ export const Task: FC<TaskProps> = ({ task }) =>{
   const [newStep, setNewStep] = useState<string>('');
   const [newDescription, setNewDescription] = useState<string>('');
   const [newName, setNewName] = useState<string>('');
+  const [isModalAddTaskOpen, setIsModalAddTaskOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
+
 
   const handleAddStep = (e: BaseSyntheticEvent) => {
     e.preventDefault();
@@ -92,6 +98,7 @@ export const Task: FC<TaskProps> = ({ task }) =>{
   const changeEdit =() => {
     setShowDescription(!showDescription);
   }
+
 
   
 
@@ -162,10 +169,21 @@ export const Task: FC<TaskProps> = ({ task }) =>{
             )}
               <Button onClick={changeEdit}>{ !showDescription ? 'Editar' : 'No editar' }</Button>
             <Button
-              onClick={() => dispatch(removeTask({idTask: task.id}))}
+              onClick={() => setIsModalAddTaskOpen(true)}
               variant="danger"
             >Eliminar</Button>
-
+             <Modal
+              isOpen={isModalAddTaskOpen}
+              onClose={() => setIsModalAddTaskOpen(false)}
+              >
+                <Box>
+                  <Text>¿Estás seguro que deseas eliminar esta tarea?</Text>
+                  <Box mt={2}>
+                  <Button variant="danger" onClick={() => dispatch(removeTask({idTask: task.id}))} >Aceptar</Button>
+                  <Button onClick={() => setIsModalAddTaskOpen(false)} >Cancelar</Button>
+                  </Box>
+                </Box>
+              </Modal>
           </div>
         </TaskDetail>
       )}
